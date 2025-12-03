@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buena Alimentación • Vive Saludable</title>
+  <meta name="description" content="Consejos, grupos alimenticios y menús para llevar una alimentación equilibrada y saludable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7faf7;
+      --card:#ffffff;
+      --accent:#3a9d64;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.7);
+      --radius:12px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing: border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #f0fbf3 0%, var(--bg) 100%);
+      color:#0f1724;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:64px;
+    }
+    header{
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(15,23,36,0.06);
+      z-index:20;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:18px;}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60c37a);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:800;
+      box-shadow:0 6px 18px rgba(58,157,100,0.18);
+    }
+    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{color:var(--accent);background:rgba(58,157,100,0.06)}
+    .hero{
+      display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:36px 0;
+    }
+    .hero-inner{display:flex;flex-direction:column;gap:18px}
+    h1{margin:0;font-size:clamp(1.6rem,2.4vw,2.4rem);line-height:1.05}
+    p.lead{color:var(--muted);margin:0;font-size:1rem}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.secondary{background:transparent;border:1px solid rgba(15,23,36,0.06);color:var(--accent)}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+    main{padding:18px 0}
+    section{margin-bottom:20px}
+    h2{margin:0 0 10px 0;font-size:1.15rem}
+    ul.list{padding-left:18px;margin:0;color:var(--muted)}
+    .food-group{display:flex;gap:12px;align-items:center}
+    .badge{min-width:68px;text-align:center;padding:8px;border-radius:10px;font-weight:600;background:linear-gradient(135deg,#fff,#f7fff7);border:1px solid rgba(15,23,36,0.03)}
+    .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .menu-card{background:linear-gradient(180deg,#ffffff,#f9fff9);padding:12px;border-radius:12px}
+    .recipe{display:flex;gap:12px;align-items:flex-start}
+    .recipe img{width:120px;height:80px;object-fit:cover;border-radius:10px}
+    footer{padding:30px 0;margin-top:16px;color:var(--muted);font-size:0.95rem}
+    .small{font-size:0.9rem;color:var(--muted)}
+    /* mobile nav button */
+    .menu-toggle{display:none;border:0;background:transparent;font-size:18px;padding:8px;border-radius:8px}
+    /* responsive */
+    @media (min-width:900px){
+      .hero{grid-template-columns:1fr 360px}
+      .hero-img{height:220px;border-radius:16px;background:linear-gradient(135deg,#e6fff0,#d9fbe8);display:flex;align-items:center;justify-content:center}
+      .menu-toggle{display:none}
+    }
+    @media (max-width:899px){
+      nav ul{display:none}
+      .menu-toggle{display:inline-block}
+      .grid{display:block}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.03);font-weight:600}
+    .shadow{box-shadow:0 10px 30px rgba(16,24,40,0.06)}
+    /* accessibility focus */
+    a:focus, button:focus {outline:3px solid rgba(58,157,100,0.18); outline-offset:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="banner">
+      <div class="brand" aria-hidden="true">
+        <div class="logo">VA</div>
+        <div>
+          <div style="font-size:0.95rem">Vive</div>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:-4px">Alimentación</div>
+        </div>
+      </div>
+
+      <nav role="navigation" aria-label="Menú principal">
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainMenu">☰</button>
+        <ul id="mainMenu">
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#grupos">Grupos</a></li>
+          <li><a href="#consejos">Consejos</a></li>
+          <li><a href="#menu-ejemplo">Menú</a></li>
+          <li><a href="#recetas">Recetas</a></li>
+        </ul>
+      </nav>
+      <div style="display:flex;gap:8px;align-items:center">
+        <a class="pill" href="#contacto">Contacto</a>
+        <button id="modeBtn" title="Cambiar vista">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-inner">
+        <h1 id="heroTitle">Buena alimentación: come bien, vive mejor</h1>
+        <p class="lead">Guía práctica con consejos, grupos alimenticios y ejemplos de menús para mantener energía, mejorar la salud y cuidar tu bienestar día a día.</p>
+        <div class="cta-row">
+          <a class="btn" href="#consejos">Ver consejos</a>
+          <a class="btn secondary" href="#menu-ejemplo">Ejemplo de menú</a>
+        </div>
+
+        <div class="cards" aria-hidden="false">
+          <div class="card">
+            <strong>Equilibrio</strong>
+            <p class="small muted">Incluir variedad: verduras, frutas, proteínas y carbohidratos saludables.</p>
+          </div>
+          <div class="card">
+            <strong>Hidratación</strong>
+            <p class="small muted">Tomar suficiente agua: aproximadamente 1.5 - 2 L al día (según actividad).</p>
+          </div>
+          <div class="card">
+            <strong>Porciones</strong>
+            <p class="small muted">Atento al tamaño de las porciones para mantener un peso saludable.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-img" aria-hidden="true">
+        <!-- Imagen ilustrativa: reemplaza por <img> si tienes una -->
+        <svg width="220" height="180" viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="220" height="180" rx="16" fill="#ffffff"/>
+          <g transform="translate(16,18)">
+            <circle cx="36" cy="36" r="28" fill="#f3fff5"/>
+            <rect x="70" y="10" width="92" height="80" rx="12" fill="#e6fff0"/>
+            <text x="36" y="42" text-anchor="middle" fill="#3a9d64" font-weight="700" font-size="18">Fruta</text>
+            <text x="116" y="54" fill="#0f1724" font-size="12">Verduras +</text>
+            <text x="116" y="72" fill="#6b7280" font-size="10">Proteínas</text>
+          </g>
+        </svg>
+      </aside>
+    </section>
+
+    <div class="grid">
+      <article>
+        <section id="beneficios" aria-labelledby="bTitle">
+          <h2 id="bTitle">Beneficios de una buena alimentación</h2>
+          <ul class="list">
+            <li>Mejora la energía y la concentración.</li>
+            <li>Reduce el riesgo de enfermedades crónicas.</li>
+            <li>Favorece un peso saludable y mejor estado de ánimo.</li>
+            <li>Fortalece el sistema inmune y la recuperación muscular.</li>
+          </ul>
+        </section>
+
+        <section id="grupos" aria-labelledby="gTitle">
+          <h2 id="gTitle">Grupos alimenticios y ejemplos</h2>
+          <div style="display:grid;gap:10px">
+            <div class="card food-group">
+              <div class="badge">Verduras</div>
+              <div>
+                <strong>Ejemplos:</strong> espinaca, brócoli, zanahoria, pimiento. <br>
+                <span class="small muted">Ricas en fibra, vitaminas y minerales.</span>
+              </div>
+            </div>
+
+            <div class="card food-group">
+              <div class="badge">Frutas</div>
+              <div>
+                <strong>Ejemplos:</strong> manzana, plátano, fresas, naranja. <br>
+                <span class="small muted">Aportan vitaminas y antioxidantes.</span>
+              </div>
+            </div>
+
+            <div class="card food-group">
+              <div class="badge">Proteínas</div>
+              <div>
+                <strong>Ejemplos:</strong> pollo, pescado, huevo, legumbres, tofu. <br>
+                <span class="small muted">Importantes para reparar tejidos y músculos.</span>
+              </div>
+            </div>
+
+            <div class="card food-group">
+              <div class="badge">Cereales y tubérculos</div>
+              <div>
+                <strong>Ejemplos:</strong> arroz integral, quinoa, avena, papa. <br>
+                <span class="small muted">Fuente principal de energía (carbohidratos complejos).</span>
+              </div>
+            </div>
+
+            <div class="card food-group">
+              <div class="badge">Grasas saludables</div>
+              <div>
+                <strong>Ejemplos:</strong> aguacate, aceite de oliva, frutos secos. <br>
+                <span class="small muted">Esenciales para absorción de vitaminas y función cerebral.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="consejos" aria-labelledby="cTitle">
+          <h2 id="cTitle">Consejos prácticos</h2>
+          <div class="tips">
+            <div class="card">
+              <strong>Planifica tus comidas</strong>
+              <p class="small muted">Preparar menús semanales evita decisiones impulsivas y comidas menos sanas.</p>
+            </div>
+            <div class="card">
+              <strong>Incluye color en el plato</strong>
+              <p class="small muted">Más colores = más nutrientes diferentes.</p>
+            </div>
+            <div class="card">
+              <strong>Evita bebidas azucaradas</strong>
+              <p class="small muted">Prefiere agua, infusiones o agua con limón.</p>
+            </div>
+            <div class="card">
+              <strong>Controla las porciones</strong>
+              <p class="small muted">Usa platos medianos y come despacio; espera 10–15 minutos antes de repetir.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="menu-ejemplo" aria-labelledby="mTitle">
+          <h2 id="mTitle">Ejemplo de menú diario (equilibrado)</h2>
+          <div class="menu-card">
+            <strong>Desayuno</strong>
+            <p class="small muted">Avena con leche o bebida vegetal, frutas y nueces.</p>
+            <strong>Comida</strong>
+            <p class="small muted">Pechuga de pollo a la plancha, arroz integral, ensalada variada.</p>
+            <strong>Merienda</strong>
+            <p class="small muted">Yogur natural con frutos rojos o una pieza de fruta + 10 almendras.</p>
+            <strong>Cena</strong>
+            <p class="small muted">Sopa de verduras o pescado al vapor con vegetales, porción ligera de carbohidrato.</p>
+          </div>
+        </section>
+
+        <section id="recetas" aria-labelledby="rTitle">
+          <h2 id="rTitle">Recetas fáciles y rápidas</h2>
+
+          <article class="card recipe" aria-labelledby="rec1">
+            <img src="https://via.placeholder.com/120x80.png?text=Ensalada" alt="Ensalada colorida">
+            <div>
+              <h3 id="rec1" style="margin:0;font-size:1rem">Ensalada mediterránea rápida</h3>
+              <p class="small muted">Tomate, pepino, cebolla morada, garbanzos, queso fresco, aceite de oliva y limón. Mezcla y sirve.</p>
+            </div>
+          </article>
+
+          <article class="card recipe" aria-labelledby="rec2">
+            <img src="https://via.placeholder.com/120x80.png?text=Avena" alt="Tazón de avena">
+            <div>
+              <h3 id="rec2" style="margin:0;font-size:1rem">Avena energética</h3>
+              <p class="small muted">Avena cocida, leche, plátano en rodajas, canela y una cucharada de mantequilla de almendra.</p>
+            </div>
+          </article>
+        </section>
+      </article>
+
+      <aside aria-labelledby="asideTitle">
+        <div class="card">
+          <h2 id="asideTitle">Mini checklist</h2>
+          <ul class="list">
+            <li>Incluye verduras en al menos 2 comidas.</li>
+            <li>Come proteína en cada comida principal.</li>
+            <li>Reduce azúcares refinados.</li>
+            <li>Camina o haz actividad 30 min/día.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h2>Calculadora rápida</h2>
+          <p class="small muted">¿Cuántas porciones de frutas? <strong>2–4/día</strong></p>
+          <p class="small muted">¿Verduras? <strong>3–5/día</strong></p>
+        </div>
+
+        <div class="card" style="margin-top:12px" id="contacto">
+          <h2>Contacto</h2>
+          <p class="small muted">¿Quieres más menús o recetas? Escribe a: <a href="mailto:hola@vivealimentacion.example">hola@vivealimentacion.example</a></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <div class="small">© <span id="year"></span> Vive Alimentación • Hecho para inspirarte a comer mejor</div>
+      <div class="muted small">Este sitio ofrece información general y no sustituye el consejo profesional de un nutricionista o médico.</div>
+    </div>
+  </footer>
+
+  <script>
+    // dinámicos: año, menú móvil y modo oscuro simple
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mainMenu = document.getElementById('mainMenu');
+    menuToggle && menuToggle.addEventListener('click', function(){
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      if(mainMenu.style.display === 'flex'){
+        mainMenu.style.display = 'none';
+      } else {
+        mainMenu.style.display = 'flex';
+        mainMenu.style.flexDirection = 'column';
+        mainMenu.style.position = 'absolute';
+        mainMenu.style.right = '18px';
+        mainMenu.style.top = '64px';
+        mainMenu.style.background = 'white';
+        mainMenu.style.padding = '10px';
+        mainMenu.style.borderRadius = '10px';
+        mainMenu.style.boxShadow = '0 10px 30px rgba(16,24,40,0.08)';
+      }
+    });
+
+    // modo claro/oscuro simple (sin persistencia)
+    const modeBtn = document.getElementById('modeBtn');
+    let dark = false;
+    modeBtn.addEventListener('click', ()=>{
+      dark = !dark;
+      if(dark){
+        document.documentElement.style.setProperty('--bg','#0b1220');
+        document.documentElement.style.setProperty('--card','#07101a');
+        document.documentElement.style.setProperty('--accent','#67e38a');
+        document.body.style.color = '#e6fdf0';
+        modeBtn.textContent = '☀️';
+      } else {
+        document.documentElement.style.setProperty('--bg','#f7faf7');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--accent','#3a9d64');
+        document.body.style.color = '#0f1724';
+        modeBtn.textContent = '🌙';
+      }
+    });
+  </script>
+</body>
+</html>
